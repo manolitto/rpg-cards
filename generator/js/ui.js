@@ -120,6 +120,29 @@ function ui_duplicate_card() {
     ui_select_card_by_index(card_data.length - 1);
 }
 
+function ui_copy_card() {
+    if (card_data.length > 0) {
+        var card = ui_selected_card();
+        navigator.clipboard.writeText(JSON.stringify(card, null, 2)).then(function() {
+            alert('Card "' + card.title + '" was copied to the clipboard')
+        }, function() {
+            alert('Failure to copy: Check permissions for clipboard or try with another browser')
+        });
+    }
+}
+
+function ui_paste_card() {
+    navigator.clipboard.readText().then(function(s) {
+        var new_card = JSON.parse(s);
+        card_data.push(new_card);
+        new_card.title = new_card.title + " (Copy)";
+        ui_update_card_list();
+        ui_select_card_by_index(card_data.length - 1);
+    }, function() {
+        alert('Failure to paste: Check permissions for clipboard or try with another browser')
+    })
+}
+
 function ui_select_card_by_index(index) {
     $("#selected-card").val(index);
     ui_update_selected_card();
@@ -631,6 +654,8 @@ $(document).ready(function () {
     $("#button-add-card").click(ui_add_new_card);
     $("#button-duplicate-card").click(ui_duplicate_card);
     $("#button-delete-card").click(ui_delete_card);
+    $("#button-copy-card").click(ui_copy_card);
+    $("#button-paste-card").click(ui_paste_card);
     $("#button-help").click(ui_open_help);
     $("#button-apply-color").click(ui_apply_default_color);
     $("#button-apply-icon").click(ui_apply_default_icon);
