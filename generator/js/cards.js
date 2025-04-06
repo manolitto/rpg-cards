@@ -344,21 +344,21 @@ function card_element_p2e_activity(params, card_data, options) {
     
     var activity_icon;
     if (params[1] == '0') {
-        activity_icon = 'icon-p2e-free-action';
+        activity_icon = 'icon-p2e-free-action-black';
     } else if (params[1] == '1') {
-        activity_icon = 'icon-p2e-1-action';
+        activity_icon = 'icon-p2e-1-action-black';
     } else if (params[1] == '2') {
-        activity_icon = 'icon-p2e-2-actions';
+        activity_icon = 'icon-p2e-2-actions-black';
     } else if (params[1] == '3') {
-        activity_icon = 'icon-p2e-3-actions';
+        activity_icon = 'icon-p2e-3-actions-black';
     } else if (params[1] == 'R') {
-        activity_icon = 'icon-p2e-reaction';
+        activity_icon = 'icon-p2e-reaction-black';
     } 
 
     var result = "";
     result += '<div class="card-element card-property-line' + card_font_size_class + '">';
     result += '   <h4 class="card-property-name">' + params[0] + '</h4>';
-    result += '   <div class="card-inline-icon ' + activity_icon + '" style="display: inline-block; vertical-align: middle; height: 10px; min-height: 10px; width: 10px; background-color: black;"></div>';
+    result += '   <div class="card-inline-icon ' + activity_icon + '" style="display: inline-block; vertical-align: middle; height: 10px; min-height: 10px; width: 10px; "></div>';
     result += '   <p class="card-p card-property-text">' + params[2] + '</p>';
     result += '</div>';
     return result;
