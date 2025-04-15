@@ -24,7 +24,8 @@ function card_default_options() {
         back_bleed: "2mm,2mm",
         back_bleed_width: "2mm",
         back_bleed_height: "2mm",
-        card_type: ""
+        card_type: "",
+        backside_card: "", // title of another card to be referenced as backside card to replace the standard backside of this card
     };
 }
 
@@ -783,6 +784,24 @@ function card_pages_generate_style(options) {
     return result;
 }
 
+function getBacksideCardsMap(card_data) {
+    const backside_card_names = card_data.map(card => card.backside_card).filter(cardName => cardName);
+    const referenced_backside_cards = card_data.filter(card => backside_card_names.indexOf(card.title) >= 0);
+    const backside_cards_map = {};
+    referenced_backside_cards.forEach(card => backside_cards_map[card.title] = card);
+    return backside_cards_map;
+}
+
+function getBacksideCard(backsideCardsMap, backsideCardTitle) {
+    const backside_card = backsideCardsMap[backsideCardTitle];
+    if (!backside_card) {
+        const message = `Backside card ${backsideCardTitle} not found`;
+        alert(message);
+        throw new Error(message);
+    }
+    return backside_card;
+}
+
 function card_pages_generate_html(card_data, options) {
     options = options || card_default_options();
     var rows = options.page_rows || 3;
@@ -791,10 +810,21 @@ function card_pages_generate_html(card_data, options) {
     // Generate the HTML for each card
     var front_cards = [];
     var back_cards = [];
+    const backsideCardsMap = getBacksideCardsMap(card_data);
+
     card_data.forEach(function (data) {
-        var count = options.card_count || data.count || 1;
-        var front = card_generate_front(data, options);
-        var back = card_generate_back(data, options);
+        if (backsideCardsMap[data.title]) {
+            // skip this card as is used as the backside of another card
+            return;
+        }
+        const count = options.card_count || data.count || 1;
+        const front = card_generate_front(data, options);
+        let back;
+        if (data.backside_card) {
+            back = card_generate_front(getBacksideCard(backsideCardsMap, data.backside_card), options);
+        } else {
+            back = card_generate_back(data, options);
+        }
         front_cards = front_cards.concat(card_repeat(front, count));
         back_cards = back_cards.concat(card_repeat(back, count));
     });

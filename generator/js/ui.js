@@ -233,6 +233,7 @@ function ui_update_selected_card() {
         $("#card-contents").val(card.contents.join("\n"));
         $("#card-tags").val(card.tags.join(", "));
         $("#card-color").val(card.color).change();
+        $("#backside_card").val(card.backside_card);
     } else {
         $("#card-title").val("");
         $("#card-type").val("");
@@ -245,6 +246,7 @@ function ui_update_selected_card() {
         $("#card-contents").val("");
         $("#card-tags").val("");
         $("#card-color").val("").change();
+        $("#backside_card").val("");
     }
 
     ui_render_selected_card();
@@ -750,6 +752,7 @@ $(document).ready(function () {
 	$("#card-color").change(ui_change_card_color);
     $("#card-contents").change(ui_change_card_contents);
     $("#card-tags").change(ui_change_card_tags);
+    $("#backside_card").change(ui_change_card_property);
 
     $("#card-contents").keyup(ui_change_card_contents_keyup);
 
