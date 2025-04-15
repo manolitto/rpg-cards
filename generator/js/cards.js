@@ -360,12 +360,22 @@ function card_element_p2e_activity(params, card_data, options) {
         activity_icon = 'icon-p2e-3-actions-black';
     } else if (params[1] == 'R') {
         activity_icon = 'icon-p2e-reaction-black';
-    } 
+    }
+
+    let font_size = card_data.card_font_size || options.default_card_font_size || '';
+    if (font_size === 'smaller') {
+        font_size = '8.88';
+    } else if (font_size === 'inherit') {
+        font_size = '10.66';
+    } else if (!font_size) {
+        font_size = '12';
+    }
+    const width_height = `width: ${font_size}px; height: ${font_size}px;`;
 
     var result = "";
     result += '<div class="card-element card-property-line' + card_font_size_class + '">';
     result += '   <h4 class="card-property-name">' + params[0] + '</h4>';
-    result += '   <div class="card-inline-icon ' + activity_icon + '" style="display: inline-block; vertical-align: middle; height: 10px; min-height: 10px; width: 10px; "></div>';
+    result += '   <div class="card-inline-icon ' + activity_icon + '" style="display: inline-block; background-size: auto 100%; vertical-align: middle; ' + width_height + '"></div>';
     result += '   <p class="card-p card-property-text">' + params[2] + '</p>';
     result += '</div>';
     return result;
