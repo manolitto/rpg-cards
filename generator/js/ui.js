@@ -153,7 +153,7 @@ function ui_paste_card() {
             } else {
                 const new_card = pasted_content;
                 card_data.push(new_card);
-                new_card.title = new_card.title + " (Pasted)";
+                new_card.title = new_card.title;// + " (Pasted)";
                 ui_update_card_list();
                 ui_select_card_by_index(card_data.length - 1);
             }
