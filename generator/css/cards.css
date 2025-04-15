@@ -249,6 +249,10 @@
     display: inline;
 }
 
+.card-description-line ul {
+    padding-inline-start: 20px;
+}
+
 .card-ruler {
     width: 100%;
     height: 1.0mm;
