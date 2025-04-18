@@ -1,0 +1,9 @@
+@font-face {
+	font-family: "pf2e-actions";
+	src: url("pf2e-actions.ttf") format("truetype");
+}
+
+.pf2-icon {
+	font-family: "pf2e-actions";
+	font-size: larger;
+}
