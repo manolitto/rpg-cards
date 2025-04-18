@@ -11,6 +11,7 @@ const eotFileName = "game-icons.eot";
 const ttfFileName = "game-icons.ttf";
 const woffFileName = "game-icons.woff";
 const destDir = "./generator/fonts";
+const customFontDir = "./resources/custom-fonts";
 
 // ----------------------------------------------------------------------------
 // Download
@@ -178,5 +179,6 @@ fse.emptyDir(tempDir)
     .then(() => moveFile(tempDir+"/"+woffFileName, destDir+"/"+woffFileName))
     .then(() => fixCss())
     .then(() => cleanDirectory(tempDir))
+    .then(() => copyAll(customFontDir, destDir))
     .then(() => console.log("Fonts: done"))
     .catch(err => console.log("Fonts: error", err));
