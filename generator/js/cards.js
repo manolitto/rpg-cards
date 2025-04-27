@@ -237,7 +237,11 @@ function card_element_text(params, card_data, options) {
 
     var result = "";
     result += '<div class="' + element_class + '">';
-    result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
+    if (params[0].startsWith('<table>')) {
+        result += '   ' + params[0];
+    } else {
+        result += '   <p class="card-p card-description-text">' + params[0] + '</p>';
+    }
     result += '</div>';
     return result;
 }
