@@ -39,10 +39,3 @@ body {
   }
 }
 
-.card-content-container table {
-  line-height: 1em;
-}
-
-.card-content-container td {
-  vertical-align: top;
-}

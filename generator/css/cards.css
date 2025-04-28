@@ -362,3 +362,11 @@
     margin: 0;
     font-size: 9.5px;
 }
+
+.card-content-container table {
+    border-spacing: 0;
+}
+
+.card-content-container td {
+    vertical-align: top;
+}
