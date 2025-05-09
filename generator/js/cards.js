@@ -20,7 +20,7 @@ function card_default_options() {
         card_height: "3.5in",
         card_count: null,
         icon_inline: true,
-        rounded_corners: true,
+        rounded_corners: false,
         back_bleed: "2mm,2mm",
         back_bleed_width: "2mm",
         back_bleed_height: "2mm",
